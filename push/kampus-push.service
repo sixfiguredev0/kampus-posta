@@ -1,0 +1,31 @@
+[Unit]
+Description=Кампус Поща push worker (IMAP IDLE on INBOX, Web Push notifications)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/kampus-push.env
+ExecStart=/opt/kampus-node/bin/node /opt/kampus-push/push/main.mjs
+Restart=always
+RestartSec=10
+# Isolation and hard caps so it cannot affect the other services on this VM.
+DynamicUser=yes
+StateDirectory=kampus-push
+StateDirectoryMode=0700
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6
+CapabilityBoundingSet=
+MemoryMax=192M
+CPUQuota=20%
+TasksMax=64
+LimitNOFILE=512
+
+[Install]
+WantedBy=multi-user.target

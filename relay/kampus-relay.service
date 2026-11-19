@@ -1,0 +1,28 @@
+[Unit]
+Description=Кампус Поща mail relay (CONNECT tunnel to TU IMAPS/SMTP only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/kampus-relay.env
+ExecStart=/opt/kampus-node/bin/node /opt/kampus-relay/relay.mjs
+Restart=on-failure
+RestartSec=5
+# Isolation and hard caps so it cannot affect the other services on this VM.
+DynamicUser=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6
+MemoryMax=96M
+CPUQuota=15%
+TasksMax=32
+LimitNOFILE=256
+
+[Install]
+WantedBy=multi-user.target

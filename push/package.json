@@ -1,0 +1,12 @@
+{
+  "name": "kampus-push",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Кампус Поща push worker for the VM: IMAP IDLE on INBOX, Web Push notifications.",
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "imapflow": "2.12.1",
+    "web-push": "3.6.7"
+  }
+}

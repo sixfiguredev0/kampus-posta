@@ -1,0 +1,30 @@
+[Unit]
+Description=Кампус Поща usage sampler (read-only, sends one sample to the ops dashboard)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/kampus-ops.env
+ExecStart=/opt/kampus-node/bin/node /opt/kampus-ops/collector.mjs
+# Runs as root only so `du` can size every folder; CAP_DAC_READ_SEARCH lets it read, nothing lets it write.
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+AmbientCapabilities=CAP_DAC_READ_SEARCH
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadOnlyPaths=/
+# The only writable place: the hourly upload queue in /var/lib/kampus-ops.
+StateDirectory=kampus-ops
+StateDirectoryMode=0700
+ProtectHome=read-only
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+Nice=19
+IOSchedulingClass=idle
+MemoryMax=64M
+CPUQuota=10%
+TimeoutStartSec=150

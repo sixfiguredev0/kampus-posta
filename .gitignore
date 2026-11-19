@@ -1,0 +1,12 @@
+.next/
+node_modules/
+.vercel/
+.mail-data/
+.env*
+!.env.example
+*.log
+# Private handoff notes (VM access, hosting IDs) must never be committed.
+PRIVATE_HANDOFF/
+*PRIVATE*
+*_HANDOFF*
+*.private.md
