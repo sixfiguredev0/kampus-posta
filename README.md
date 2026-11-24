@@ -1,13 +1,13 @@
 <p align="center">
-  <img src="docs/media/banner.svg" alt="Кампус Поща — пощата на ТУ – София, подредена и бърза" width="100%" />
+  <img src="docs/media/banner.png" alt="Кампус Поща — пощата на ТУ – София, подредена и бърза" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://github.com/sixfiguredev0/kampus-posta/releases/tag/v1.0.0"><img alt="Version 1.0.0" src="https://img.shields.io/badge/version-1.0.0-4F7CFF?style=for-the-badge" /></a>
-  <img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-0B1638?style=for-the-badge&logo=nextdotjs" />
-  <img alt="Node 22+" src="https://img.shields.io/badge/Node-22%2B-0B1638?style=for-the-badge&logo=nodedotjs" />
-  <img alt="24 tests passing" src="https://img.shields.io/badge/tests-24%20passing-2DD4BF?style=for-the-badge" />
-  <img alt="Made for TU Sofia" src="https://img.shields.io/badge/made%20for-%D0%A2%D0%A3%20%E2%80%93%20%D0%A1%D0%BE%D1%84%D0%B8%D1%8F-38A4FF?style=for-the-badge" />
+  <a href="https://github.com/sixfiguredev0/kampus-posta/releases/tag/v1.1.0"><img alt="Version 1.1.0" src="https://img.shields.io/badge/version-1.1.0-4F7CFF?style=flat-square" /></a>
+  <img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-1A1E28?style=flat-square&logo=nextdotjs" />
+  <img alt="Node 22+" src="https://img.shields.io/badge/Node-22%2B-1A1E28?style=flat-square&logo=nodedotjs" />
+  <img alt="24 tests passing" src="https://img.shields.io/badge/tests-24%20passing-1A1E28?style=flat-square" />
+  <img alt="Made for TU Sofia" src="https://img.shields.io/badge/made%20for-%D0%A2%D0%A3%20%E2%80%93%20%D0%A1%D0%BE%D1%84%D0%B8%D1%8F-1A1E28?style=flat-square" />
 </p>
 
 <p align="center">
@@ -24,42 +24,42 @@
 
 ---
 
-## ✨ What it does
+## What it does
 
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3>📬 Reading that respects TU</h3>
+      <h3>Reading that respects TU</h3>
       Folders show TU's real unread counts. Opening a message marks it read in TUSmail, or not, if you turn that off. Search covers sender and subject in the current folder. The list refreshes on entry, on focus and about every minute.
     </td>
     <td width="50%" valign="top">
-      <h3>🗂️ Organising in one tap</h3>
+      <h3>Organising in one tap</h3>
       Stars, read/unread, move, archive and trash, one message at a time or in bulk. Every move has an <b>8-second undo</b>. Permanent delete only from Кошче, after a confirmation.
     </td>
   </tr>
   <tr>
     <td valign="top">
-      <h3>🏷️ Labels</h3>
+      <h3>Labels</h3>
       Учебни, Администрация, Събития, Лични, plus your own. Labels are keyed by Message-ID, so they follow a message you move within the app.
     </td>
     <td valign="top">
-      <h3>✉️ Sending you can trust</h3>
+      <h3>Sending you can trust</h3>
       Reply, reply all, forward, CC/BCC, attachments and autosaved drafts. Every send has a stable attempt ID: an uncertain SMTP result is <b>never resent automatically</b>, and <b>Запази копие</b> retries only the Sent copy.
     </td>
   </tr>
   <tr>
     <td valign="top">
-      <h3>🔔 Notifications on your phone</h3>
+      <h3>Notifications on your phone</h3>
       New mail in Входящи arrives as a notification with the sender and subject, even when the app is closed. Battery use is close to zero: the phone keeps no mail connection of its own.
     </td>
     <td valign="top">
-      <h3>🎧 Small touches</h3>
+      <h3>Small touches</h3>
       Optional sounds for new mail and for sending (made with ElevenLabs), dark/light/system themes, comfortable or compact density, and <code>?</code> for every keyboard shortcut.
     </td>
   </tr>
 </table>
 
-## 📱 Made for the phone
+## Made for the phone
 
 <p align="center">
   <img src="docs/media/phones.png" alt="Three phone screens: a new-mail notification over the inbox, a message, and a reply" width="100%" />
@@ -80,7 +80,7 @@
   </tr>
 </table>
 
-## 🌗 Your way
+## Your way
 
 <table>
   <tr>
@@ -95,19 +95,19 @@
 
 ---
 
-## 🧭 How it works
+## How it works
 
 ```mermaid
 flowchart LR
-  subgraph Phone["📱 Phone / 💻 Browser"]
+  subgraph Phone["Phone / browser"]
     UI["Кампус Поща<br/>(Next.js app)"]
     SW["Service worker<br/>(notifications)"]
   end
-  subgraph Vercel["▲ Vercel · fra1"]
+  subgraph Vercel["Vercel · fra1"]
     API["/api/mail/*<br/>sessions, labels, drafts, sends"]
     DB[("Neon Postgres<br/>+ private Blob")]
   end
-  subgraph VM["☁️ Oracle VM"]
+  subgraph VM["Oracle VM"]
     Relay["kampus-relay<br/>CONNECT tunnel"]
     Push["kampus-push<br/>IMAP IDLE worker"]
   end
@@ -129,7 +129,7 @@ flowchart LR
   - It sends the sender and subject through Web Push.
   - A burst of more than three messages is collapsed into one summary notification.
 
-## 🔐 Security
+## Security
 
 | What | How |
 | --- | --- |
@@ -140,7 +140,7 @@ flowchart LR
 | **Worker** | `DynamicUser`, `ProtectSystem=strict`, 192 MB / 20% CPU limits. Listens only on `127.0.0.1` and is reached through the relay, so no new port is open. Sync messages are HMAC-signed and expire after 60 s. |
 | **Limits** | Up to 25 notification accounts, 5 devices each. Pushes go only to known push services (FCM, Mozilla, Apple, WNS). |
 
-## 🚀 Run it locally
+## Run it locally
 
 Requires Node.js 22 or newer.
 
@@ -160,7 +160,7 @@ npm run build
 
 The tests run against loopback IMAP/SMTP fixtures, the API handler, a real relay, and a fake IMAP client for the push worker. They use synthetic data only.
 
-## ☁️ Hosting
+## Hosting
 
 Configuration lives in [`.env.example`](.env.example).
 

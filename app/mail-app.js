@@ -230,7 +230,6 @@ export default function MailApp({ mode }) {
   const pendingSend = useRef(false);
   const activeAttempt = useRef(null);
   const glow = useRef(null);
-  const orb = useRef(null);
   const anchor = useRef(null);
   const keyHandler = useRef(null);
   const rowsRef = useRef(rows);
@@ -971,17 +970,6 @@ export default function MailApp({ mode }) {
     return () => clearTimeout(timer);
   }, []);
 
-  // The background orb wanders to a new random spot every 16s (CSS eases the move); it stays put for reduced motion.
-  useEffect(() => {
-    const element = orb.current;
-    if (!element || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const spread = range => (Math.random() * 2 - 1) * range;
-    const wander = () => { element.style.transform = 'translate(' + spread(32) + 'vw, ' + spread(28) + 'vh) scale(' + (0.85 + Math.random() * 0.4) + ')'; };
-    const first = setTimeout(wander, 60);
-    const timer = setInterval(wander, 16000);
-    return () => { clearTimeout(first); clearInterval(timer); };
-  }, []);
-
   // One glow bar glides to the open message instead of each row toggling its own highlight.
   useLayoutEffect(() => {
     const bar = glow.current;
@@ -1056,7 +1044,6 @@ export default function MailApp({ mode }) {
 
   if (restoring || !account) {
     return <div className={'mail-app signin-app' + (intro ? ' intro' : '')}>
-      <div className="aurora" aria-hidden="true"><i ref={orb} /></div>
       <header className="signin-top">
         <a className="brand" href="/" aria-label="Кампус Поща – начало">
           <img className="brand-mark" src="/logo.png" alt="" width={36} height={36} />
@@ -1081,7 +1068,6 @@ export default function MailApp({ mode }) {
 
   return (
     <div className={'mail-app ' + (density === 'compact' ? 'compact ' : '') + (mobileRead ? 'mobile-reading ' : '') + (checked.size ? 'selecting ' : '') + (intro ? 'intro' : '')}>
-      <div className="aurora" aria-hidden="true"><i ref={orb} /></div>
       <header className="topbar">
         <div className="brand-wrap">
           <a className="brand" href="/" aria-label="Кампус Поща – начало">

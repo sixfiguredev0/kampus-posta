@@ -22,7 +22,6 @@ const facts = [
 
 export default function Home() {
   return <div className="home">
-    <div className="aurora home-aurora" aria-hidden="true"><i /></div>
     <header className="home-top">
       <a className="brand" href="/" aria-label="Кампус Поща – начало">
         <img className="brand-mark" src="/logo.png" alt="" width={36} height={36} />
@@ -34,7 +33,7 @@ export default function Home() {
     <main>
       <section className="home-hero">
         <div className="home-copy">
-          <h1>Университетската ви поща, подредена и бърза.</h1>
+          <h1>Университетската ви поща, подредена и бърза</h1>
           <p>Кампус Поща е уеб клиент за имейла ви в ТУ – София. Четете, отговаряте и подреждате писмата си от компютър или телефон, а за новите писма получавате известие на телефона.</p>
           <div className="home-cta">
             <a className="primary" href="/mail">Влез с пощата на ТУ <ArrowRight size={17} /></a>
@@ -56,7 +55,7 @@ export default function Home() {
 
       <section className="home-facts">
         {facts.map(([Icon, title, text]) => <div className="home-fact" key={title}>
-          <span className="home-fact-icon"><Icon size={20} /></span>
+          <Icon className="home-fact-icon" size={20} aria-hidden="true" />
           <h2>{title}</h2>
           <p>{text}</p>
         </div>)}
