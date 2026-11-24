@@ -3,11 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/sixfiguredev0/kampus-posta/releases/tag/v1.1.0"><img alt="Version 1.1.0" src="https://img.shields.io/badge/version-1.1.0-4F7CFF?style=flat-square" /></a>
-  <img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-1A1E28?style=flat-square&logo=nextdotjs" />
-  <img alt="Node 22+" src="https://img.shields.io/badge/Node-22%2B-1A1E28?style=flat-square&logo=nodedotjs" />
-  <img alt="24 tests passing" src="https://img.shields.io/badge/tests-24%20passing-1A1E28?style=flat-square" />
-  <img alt="Made for TU Sofia" src="https://img.shields.io/badge/made%20for-%D0%A2%D0%A3%20%E2%80%93%20%D0%A1%D0%BE%D1%84%D0%B8%D1%8F-1A1E28?style=flat-square" />
+  <sub><a href="https://github.com/sixfiguredev0/kampus-posta/releases/tag/v1.1.0">v1.1.0</a> · Next.js 16 · Node 22+ · 24 tests passing · made for ТУ – София</sub>
 </p>
 
 <p align="center">
